@@ -39,6 +39,16 @@ sysctl --system
 
 kubeadm init --pod-network-cidr=10.170.0.0/16 #assumes you want it on this network
 
+# the above command will give you a join command, you must take this and run it on slave.
+
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config 
+
+
+# Install flannel
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml
+
+kubectl get nodes
+
+# if get nodes fail, that means slave is not in cluster, or the CNI / flannel is not installed 

@@ -37,8 +37,3 @@ EOF
 
 sysctl --system
 
-kubeadm init --pod-network-cidr=10.170.0.0/16 #assumes you want it on this network
-
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config 
